@@ -1,0 +1,24 @@
+name: Docker Desktop with VNC
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-run:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Replace this step with the necessary Docker login step if using a private registry.
+
+      - name: Start Docker container
+        run: |
+          docker run -d -p 6070:80 dorowu/ubuntu-desktop-lxde-vnc
+
+      - name: Wait for container to start
+        run: sleep 10
+
+      # Add other steps or tasks as needed for your workflow.
